@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.MenuReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.MenuReply" >
+    <id column="menuReply_id" property="menureplyId" jdbcType="VARCHAR" />
+    <result column="menuReply_menuId" property="menureplyMenuid" jdbcType="VARCHAR" />
+    <result column="menuReply_info" property="menureplyInfo" jdbcType="VARCHAR" />
+    <result column="menuReply_inputuser" property="menureplyInputuser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menuReply_id, menuReply_menuId, menuReply_info, menuReply_inputuser
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from menureply
+    where menuReply_id = #{menureplyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from menureply
+    where menuReply_id = #{menureplyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.MenuReply" >
+    <selectKey keyProperty="menuReply_id" resultType="String" order="BEFORE">
+      select  replace(uuid(),'-','')
+    </selectKey>
+    insert into menureply (menuReply_id, menuReply_menuId, menuReply_info, 
+      menuReply_inputuser)
+    values (#{menureplyId,jdbcType=VARCHAR}, #{menureplyMenuid,jdbcType=VARCHAR}, #{menureplyInfo,jdbcType=VARCHAR}, 
+      #{menureplyInputuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.MenuReply" >
+    insert into menureply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menureplyId != null" >
+        menuReply_id,
+      </if>
+      <if test="menureplyMenuid != null" >
+        menuReply_menuId,
+      </if>
+      <if test="menureplyInfo != null" >
+        menuReply_info,
+      </if>
+      <if test="menureplyInputuser != null" >
+        menuReply_inputuser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menureplyId != null" >
+        #{menureplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="menureplyMenuid != null" >
+        #{menureplyMenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menureplyInfo != null" >
+        #{menureplyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="menureplyInputuser != null" >
+        #{menureplyInputuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.MenuReply" >
+    update menureply
+    <set >
+      <if test="menureplyMenuid != null" >
+        menuReply_menuId = #{menureplyMenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menureplyInfo != null" >
+        menuReply_info = #{menureplyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="menureplyInputuser != null" >
+        menuReply_inputuser = #{menureplyInputuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menuReply_id = #{menureplyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.MenuReply" >
+    update menureply
+    set menuReply_menuId = #{menureplyMenuid,jdbcType=VARCHAR},
+      menuReply_info = #{menureplyInfo,jdbcType=VARCHAR},
+      menuReply_inputuser = #{menureplyInputuser,jdbcType=VARCHAR}
+    where menuReply_id = #{menureplyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

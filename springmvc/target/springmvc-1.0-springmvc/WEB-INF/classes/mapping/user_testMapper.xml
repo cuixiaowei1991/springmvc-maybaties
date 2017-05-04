@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.user_testMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.user_test" >
+    <id column="User_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ycy.model.user_test" extends="BaseResultMap" >
+    <result column="user_name" property="userName" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    User_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    user_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_test
+    where User_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_test
+    where User_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.user_test" >
+    insert into user_test (User_id, user_name)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.user_test" >
+    insert into user_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        User_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.user_test" >
+    update user_test
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where User_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ycy.model.user_test" >
+    update user_test
+    set user_name = #{userName,jdbcType=LONGVARCHAR}
+    where User_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

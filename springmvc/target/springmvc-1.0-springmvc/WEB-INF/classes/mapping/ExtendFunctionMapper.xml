@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.ExtendFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.ExtendFunction" >
+    <id column="extendfunction_id" property="extendfunctionId" jdbcType="VARCHAR" />
+    <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+    <result column="applicable_wechat_appid" property="applicableWechatAppid" jdbcType="VARCHAR" />
+    <result column="function_num" property="functionNum" jdbcType="VARCHAR" />
+    <result column="function_Release_user" property="functionReleaseUser" jdbcType="VARCHAR" />
+    <result column="function_extend1" property="functionExtend1" jdbcType="VARCHAR" />
+    <result column="function_extend2" property="functionExtend2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    extendfunction_id, function_name, applicable_wechat_appid, function_num, function_Release_user, 
+    function_extend1, function_extend2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from extendfunction
+    where extendfunction_id = #{extendfunctionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from extendfunction
+    where extendfunction_id = #{extendfunctionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.ExtendFunction" >
+    <selectKey keyProperty="extendfunction_id" resultType="String" order="BEFORE">
+      select  replace(uuid(),'-','')
+    </selectKey>
+    insert into extendfunction (extendfunction_id, function_name, applicable_wechat_appid, 
+      function_num, function_Release_user, function_extend1, 
+      function_extend2)
+    values (#{extendfunctionId,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR}, #{applicableWechatAppid,jdbcType=VARCHAR}, 
+      #{functionNum,jdbcType=VARCHAR}, #{functionReleaseUser,jdbcType=VARCHAR}, #{functionExtend1,jdbcType=VARCHAR}, 
+      #{functionExtend2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.ExtendFunction" >
+    insert into extendfunction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="extendfunctionId != null" >
+        extendfunction_id,
+      </if>
+      <if test="functionName != null" >
+        function_name,
+      </if>
+      <if test="applicableWechatAppid != null" >
+        applicable_wechat_appid,
+      </if>
+      <if test="functionNum != null" >
+        function_num,
+      </if>
+      <if test="functionReleaseUser != null" >
+        function_Release_user,
+      </if>
+      <if test="functionExtend1 != null" >
+        function_extend1,
+      </if>
+      <if test="functionExtend2 != null" >
+        function_extend2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="extendfunctionId != null" >
+        #{extendfunctionId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableWechatAppid != null" >
+        #{applicableWechatAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="functionNum != null" >
+        #{functionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="functionReleaseUser != null" >
+        #{functionReleaseUser,jdbcType=VARCHAR},
+      </if>
+      <if test="functionExtend1 != null" >
+        #{functionExtend1,jdbcType=VARCHAR},
+      </if>
+      <if test="functionExtend2 != null" >
+        #{functionExtend2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.ExtendFunction" >
+    update extendfunction
+    <set >
+      <if test="functionName != null" >
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicableWechatAppid != null" >
+        applicable_wechat_appid = #{applicableWechatAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="functionNum != null" >
+        function_num = #{functionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="functionReleaseUser != null" >
+        function_Release_user = #{functionReleaseUser,jdbcType=VARCHAR},
+      </if>
+      <if test="functionExtend1 != null" >
+        function_extend1 = #{functionExtend1,jdbcType=VARCHAR},
+      </if>
+      <if test="functionExtend2 != null" >
+        function_extend2 = #{functionExtend2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where extendfunction_id = #{extendfunctionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.ExtendFunction" >
+    update extendfunction
+    set function_name = #{functionName,jdbcType=VARCHAR},
+      applicable_wechat_appid = #{applicableWechatAppid,jdbcType=VARCHAR},
+      function_num = #{functionNum,jdbcType=VARCHAR},
+      function_Release_user = #{functionReleaseUser,jdbcType=VARCHAR},
+      function_extend1 = #{functionExtend1,jdbcType=VARCHAR},
+      function_extend2 = #{functionExtend2,jdbcType=VARCHAR}
+    where extendfunction_id = #{extendfunctionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

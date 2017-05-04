@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ycy.dao.UserAccountMapper">
+  <resultMap id="BaseResultMap" type="com.ycy.model.UserAccount">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap> 
+<!--   <sql id="Base_Column_List">
+    user_id, name, password, sex, description, enable, flag
+  </sql> -->
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from ycy_user where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+ 
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.Users" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_wechat_openid" property="userWechatOpenid" jdbcType="VARCHAR" />
+    <result column="user_wechat_appid" property="userWechatAppid" jdbcType="VARCHAR" />
+    <result column="user_role" property="userRole" jdbcType="VARCHAR" />
+    <result column="user_extend1" property="userExtend1" jdbcType="VARCHAR" />
+    <result column="user_extend2" property="userExtend2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_wechat_openid, user_wechat_appid, user_role, user_extend1, user_extend2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from users
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.Users" >
+    <selectKey keyProperty="user_id" resultType="String" order="BEFORE">
+      select  replace(uuid(),'-','')
+    </selectKey>
+    insert into users (user_id, user_wechat_openid, user_wechat_appid, 
+      user_role, user_extend1, user_extend2
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userWechatOpenid,jdbcType=VARCHAR}, #{userWechatAppid,jdbcType=VARCHAR}, 
+      #{userRole,jdbcType=VARCHAR}, #{userExtend1,jdbcType=VARCHAR}, #{userExtend2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userWechatOpenid != null" >
+        user_wechat_openid,
+      </if>
+      <if test="userWechatAppid != null" >
+        user_wechat_appid,
+      </if>
+      <if test="userRole != null" >
+        user_role,
+      </if>
+      <if test="userExtend1 != null" >
+        user_extend1,
+      </if>
+      <if test="userExtend2 != null" >
+        user_extend2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatOpenid != null" >
+        #{userWechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatAppid != null" >
+        #{userWechatAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        #{userRole,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtend1 != null" >
+        #{userExtend1,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtend2 != null" >
+        #{userExtend2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.Users" >
+    update users
+    <set >
+      <if test="userWechatOpenid != null" >
+        user_wechat_openid = #{userWechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatAppid != null" >
+        user_wechat_appid = #{userWechatAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        user_role = #{userRole,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtend1 != null" >
+        user_extend1 = #{userExtend1,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtend2 != null" >
+        user_extend2 = #{userExtend2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.Users" >
+    update users
+    set user_wechat_openid = #{userWechatOpenid,jdbcType=VARCHAR},
+      user_wechat_appid = #{userWechatAppid,jdbcType=VARCHAR},
+      user_role = #{userRole,jdbcType=VARCHAR},
+      user_extend1 = #{userExtend1,jdbcType=VARCHAR},
+      user_extend2 = #{userExtend2,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

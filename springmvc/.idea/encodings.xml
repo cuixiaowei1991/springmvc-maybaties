@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/controller/KeyWordController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/controller/KeywordReplyController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/controller/UserController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/ExtendFunctionMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/KeyWordMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/KeywordReplyMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/MenuMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/MenuReplyMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/RoleMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/UserAccountMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/UsersMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/userMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/dao/user_testMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/ExtendFunction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/KeyWord.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/KeyWordExample.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/KeywordReply.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/Menu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/MenuReply.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/Role.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/UserAccount.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/Users.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/user.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/model/user_test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/KeyWordservice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/KeywordReplyservice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/Roleservice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/UserTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/Userservice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/impl/KeyWordserviceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/impl/KeywordReplyserviceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/impl/RoleserviceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/impl/UserTestImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ycy/service/impl/UserserviceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/index.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/TestMybatis.java" charset="UTF-8" />
+  </component>
+</project>

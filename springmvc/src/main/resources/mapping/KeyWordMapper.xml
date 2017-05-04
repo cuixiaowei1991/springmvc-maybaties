@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.KeyWordMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.KeyWord" >
+    <id column="keyword_id" property="keywordId" jdbcType="VARCHAR" />
+    <result column="keyword_value" property="keywordValue" jdbcType="VARCHAR" />
+    <result column="keyword_add_user" property="keywordAddUser" jdbcType="VARCHAR" />
+    <result column="keyword_type" property="keywordType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    keyword_id, keyword_value, keyword_add_user, keyword_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from keyword
+    where keyword_id = #{keywordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from keyword
+    where keyword_id = #{keywordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.KeyWord" >
+    insert into keyword (keyword_id, keyword_value, keyword_add_user, 
+      keyword_type)
+    values (#{keywordId,jdbcType=VARCHAR}, #{keywordValue,jdbcType=VARCHAR}, #{keywordAddUser,jdbcType=VARCHAR}, 
+      #{keywordType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.KeyWord" >
+    insert into keyword
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keywordId != null" >
+        keyword_id,
+      </if>
+      <if test="keywordValue != null" >
+        keyword_value,
+      </if>
+      <if test="keywordAddUser != null" >
+        keyword_add_user,
+      </if>
+      <if test="keywordType != null" >
+        keyword_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keywordId != null" >
+        #{keywordId,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordValue != null" >
+        #{keywordValue,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordAddUser != null" >
+        #{keywordAddUser,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordType != null" >
+        #{keywordType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.KeyWord" >
+    update keyword
+    <set >
+      <if test="keywordValue != null" >
+        keyword_value = #{keywordValue,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordAddUser != null" >
+        keyword_add_user = #{keywordAddUser,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordType != null" >
+        keyword_type = #{keywordType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where keyword_id = #{keywordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.KeyWord" >
+    update keyword
+    set keyword_value = #{keywordValue,jdbcType=VARCHAR},
+      keyword_add_user = #{keywordAddUser,jdbcType=VARCHAR},
+      keyword_type = #{keywordType,jdbcType=VARCHAR}
+    where keyword_id = #{keywordId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByKeyWord" resultMap="BaseResultMap" parameterType="com.ycy.model.KeyWord" >
+    select
+    <include refid="Base_Column_List" />
+    from keyword
+    <!--where keyword_id = #{keywordId,jdbcType=VARCHAR}-->
+    <where>
+      <if test="keywordValue != null">
+        keyword_value = #{keywordValue}
+      </if>
+      <if test="keywordAddUser != null">
+        and keyword_add_user = #{keywordAddUser}
+      </if>
+      <if test="keywordType != null">
+        and keyword_type = #{keywordType}
+      </if>
+    </where>>
+  </select>
+</mapper>

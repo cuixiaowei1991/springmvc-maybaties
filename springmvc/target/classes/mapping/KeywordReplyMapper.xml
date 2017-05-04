@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.KeywordReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.KeywordReply" >
+    <id column="KeywordReply_id" property="keywordreplyId" jdbcType="VARCHAR" />
+    <result column="KeywordReply_keywordId" property="keywordreplyKeywordid" jdbcType="VARCHAR" />
+    <result column="KeywordReply_content" property="keywordreplyContent" jdbcType="VARCHAR" />
+    <result column="KeywordReply_appid" property="keywordreplyAppid" jdbcType="VARCHAR" />
+    <result column="KeywordReply_user" property="keywordreplyUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    KeywordReply_id, KeywordReply_keywordId, KeywordReply_content, KeywordReply_appid, 
+    KeywordReply_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from keywordreply
+    where KeywordReply_id = #{keywordreplyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from keywordreply
+    where KeywordReply_id = #{keywordreplyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.KeywordReply" >
+    <selectKey keyProperty="KeywordReply_id" resultType="String" order="BEFORE">
+      select  replace(uuid(),'-','')
+    </selectKey>
+    insert into keywordreply (KeywordReply_id, KeywordReply_keywordId, 
+      KeywordReply_content, KeywordReply_appid, 
+      KeywordReply_user)
+    values (#{keywordreplyId,jdbcType=VARCHAR}, #{keywordreplyKeywordid,jdbcType=VARCHAR}, 
+      #{keywordreplyContent,jdbcType=VARCHAR}, #{keywordreplyAppid,jdbcType=VARCHAR}, 
+      #{keywordreplyUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.KeywordReply" >
+    insert into keywordreply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keywordreplyId != null" >
+        KeywordReply_id,
+      </if>
+      <if test="keywordreplyKeywordid != null" >
+        KeywordReply_keywordId,
+      </if>
+      <if test="keywordreplyContent != null" >
+        KeywordReply_content,
+      </if>
+      <if test="keywordreplyAppid != null" >
+        KeywordReply_appid,
+      </if>
+      <if test="keywordreplyUser != null" >
+        KeywordReply_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keywordreplyId != null" >
+        #{keywordreplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyKeywordid != null" >
+        #{keywordreplyKeywordid,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyContent != null" >
+        #{keywordreplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyAppid != null" >
+        #{keywordreplyAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyUser != null" >
+        #{keywordreplyUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.KeywordReply" >
+    update keywordreply
+    <set >
+      <if test="keywordreplyKeywordid != null" >
+        KeywordReply_keywordId = #{keywordreplyKeywordid,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyContent != null" >
+        KeywordReply_content = #{keywordreplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyAppid != null" >
+        KeywordReply_appid = #{keywordreplyAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordreplyUser != null" >
+        KeywordReply_user = #{keywordreplyUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where KeywordReply_id = #{keywordreplyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.KeywordReply" >
+    update keywordreply
+    set KeywordReply_keywordId = #{keywordreplyKeywordid,jdbcType=VARCHAR},
+      KeywordReply_content = #{keywordreplyContent,jdbcType=VARCHAR},
+      KeywordReply_appid = #{keywordreplyAppid,jdbcType=VARCHAR},
+      KeywordReply_user = #{keywordreplyUser,jdbcType=VARCHAR}
+    where KeywordReply_id = #{keywordreplyId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByKeywordReply" resultMap="BaseResultMap" parameterType="com.ycy.model.KeywordReply" >
+    select
+    <include refid="Base_Column_List" />
+    from KeywordReply
+    <!--where keyword_id = #{keywordId,jdbcType=VARCHAR}-->
+    <where>
+      <if test="keywordreplyKeywordid != null">
+        KeywordReply_keywordId = #{keywordreplyKeywordid}
+      </if>
+      <if test="keywordreplyUser != null">
+        and KeywordReply_user = #{keywordreplyUser}
+      </if>
+      <if test="keywordreplyContent != null">
+        and KeywordReply_content = #{keywordreplyContent}
+      </if>
+      <if test="keywordreplyAppid != null">
+        and KeywordReply_appid = #{keywordreplyAppid}
+      </if>
+    </where>>
+  </select>
+</mapper>

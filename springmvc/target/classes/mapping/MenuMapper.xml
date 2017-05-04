@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycy.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ycy.model.Menu" >
+    <id column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_applyAppid" property="menuApplyappid" jdbcType="VARCHAR" />
+    <result column="menu_levelId" property="menuLevelid" jdbcType="VARCHAR" />
+    <result column="menu_superiorId" property="menuSuperiorid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menu_id, menu_name, menu_applyAppid, menu_levelId, menu_superiorId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycy.model.Menu" >
+    <selectKey keyProperty="menu_id" resultType="String" order="BEFORE">
+      select  replace(uuid(),'-','')
+    </selectKey>
+    insert into menu (menu_id, menu_name, menu_applyAppid, 
+      menu_levelId, menu_superiorId)
+    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuApplyappid,jdbcType=VARCHAR}, 
+      #{menuLevelid,jdbcType=VARCHAR}, #{menuSuperiorid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycy.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuApplyappid != null" >
+        menu_applyAppid,
+      </if>
+      <if test="menuLevelid != null" >
+        menu_levelId,
+      </if>
+      <if test="menuSuperiorid != null" >
+        menu_superiorId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuApplyappid != null" >
+        #{menuApplyappid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevelid != null" >
+        #{menuLevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSuperiorid != null" >
+        #{menuSuperiorid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycy.model.Menu" >
+    update menu
+    <set >
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuApplyappid != null" >
+        menu_applyAppid = #{menuApplyappid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevelid != null" >
+        menu_levelId = #{menuLevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSuperiorid != null" >
+        menu_superiorId = #{menuSuperiorid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycy.model.Menu" >
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_applyAppid = #{menuApplyappid,jdbcType=VARCHAR},
+      menu_levelId = #{menuLevelid,jdbcType=VARCHAR},
+      menu_superiorId = #{menuSuperiorid,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByMenu" resultMap="BaseResultMap" parameterType="com.ycy.model.Menu">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM menu
+    <where>
+      <if test="menuName != null">
+        menu_name = #{menuName}
+      </if>
+      <if test="menuApplyappid != null">
+        and menu_applyAppid = #{menuApplyappid}
+      </if>
+      <if test="menuLevelid != null">
+        and menu_levelId = #{menuLevelid}
+      </if>
+      <if test="menuSuperiorid != null">
+        and menu_superiorId = #{menuSuperiorid}
+      </if>
+    </where>
+  </select>
+
+</mapper>
